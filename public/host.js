@@ -27,14 +27,26 @@ socket.on('state', (s) => { S = s; render(); });
 
 // ---------- 上方按鈕 ----------
 const sndBtn = document.getElementById('sndBtn');
-sndBtn.onclick = () => { Sfx.on = !Sfx.on; sndBtn.textContent = Sfx.on ? '🔊' : '🔇'; if (Sfx.on) Sfx.pop(); };
+sndBtn.onclick = () => { Sfx.on = !Sfx.on; sndBtn.textContent = Sfx.on ? '🔊' : '🔇'; Music.setMuted(!Sfx.on); if (Sfx.on) Sfx.pop(); };
 document.getElementById('fsBtn').onclick = () => {
   if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.();
 };
 document.getElementById('restartBtn').onclick = () => {
   if (confirm('要重新開始嗎？所有分數會歸零，學生不用重新加入。')) socket.emit('host:restart');
 };
-document.addEventListener('pointerdown', () => Sfx._ctx(), { once: true });
+document.addEventListener('pointerdown', () => Sfx._ctx());
+
+// 瀏覽器規定要先點一下畫面才能播放聲音：還沒點之前顯示提示
+const musicHint = el('button', { class: 'music-hint hidden', onclick: () => Sfx._ctx() }, '🎵 點一下畫面，開啟音樂和音效');
+document.body.append(musicHint);
+setInterval(() => musicHint.classList.toggle('hidden', !Sfx.ctx || Sfx.ctx.state === 'running' || !Sfx.on), 500);
+
+// 每個畫面要播的背景音樂
+function musicFor(phase) {
+  if (phase === 'lobby') Music.play('lobby');
+  else if (phase === 'question') Music.play('question');
+  else if (phase !== 'podium') Music.stop();
+}
 
 // ---------- 畫面 ----------
 function render() {
@@ -45,6 +57,7 @@ function render() {
     renderedKey = key;
     app.replaceChildren();
     ({ lobby: renderLobby, intro: renderIntro, question: renderQuestion, reveal: renderReveal, leaderboard: renderLeaderboard, podium: renderPodium })[S.phase]();
+    musicFor(S.phase);
   } else update();
 }
 
@@ -161,6 +174,7 @@ function renderQuestion() {
     num.textContent = sec;
     fg.style.strokeDashoffset = String(C * (1 - left / (q.time * 1000)));
     box.classList.toggle('hurry', sec <= 5);
+    Music.setRate(sec <= 5 ? 1.3 : 1);
     if (sec !== lastSec && sec <= 5 && sec > 0) Sfx.tick();
     lastSec = sec;
     requestAnimationFrame(loop);
@@ -246,7 +260,9 @@ function renderPodium() {
     setTimeout(() => { pod.classList.add('show'); Sfx.pop(); }, 700);
   }, delay);
   show(3, 400); show(2, 1600); show(1, 2900);
+  Music.stop();
   setTimeout(() => { Sfx.fanfare(); confetti(90); }, 3700);
+  setTimeout(() => { if (S.phase === 'podium') Music.play('lobby'); }, 7000);
   setTimeout(() => confetti(50), 6000);
   if (first.length > 1) setTimeout(() => confetti(30, ['🤝', '✨']), 4200);
 }
