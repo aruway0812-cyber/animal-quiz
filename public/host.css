@@ -23,7 +23,7 @@ body { font-size: clamp(16px, 1.6vw, 28px); }
 .join-url b { color: var(--ink); white-space: nowrap; }
 .pin-label { font-weight: 800; color: var(--muted); }
 .pin-big { font-size: 4.2em; font-weight: 800; letter-spacing: .08em; line-height: 1; color: var(--purple); }
-.qr { width: min(26vh, 100%); aspect-ratio: 1; border-radius: 16px; background: #fff; padding: 8px; border: 4px dashed var(--pink); }
+.qr { width: min(36vh, 100%); aspect-ratio: 1; border-radius: 16px; background: #fff; padding: 8px; border: 4px dashed var(--pink); }
 .players-area { display: flex; flex-direction: column; min-height: 0; }
 .players-head { display: flex; align-items: center; gap: 14px; font-weight: 900; font-size: 1.4em; margin-bottom: 1.5vh; }
 .count-badge { background: var(--pink); color: #fff; border-radius: 999px; padding: 2px 18px; min-width: 2.6em; text-align: center; }
@@ -132,3 +132,10 @@ body { font-size: clamp(16px, 1.6vw, 28px); }
   border-radius: 999px; padding: 10px 20px; font-weight: 800; font-size: .8em; box-shadow: var(--shadow);
   animation: bounce 1.6s ease-in-out infinite;
 }
+
+/* 人數多時名牌縮小 */
+.players.many { gap: 8px; }
+.players.many .pbubble { padding: 3px 14px 3px 6px; font-size: .85em; }
+.players.lots .pbubble { padding: 2px 10px 2px 4px; font-size: .72em; }
+.players-head .btn { font-size: .7em; }
+.join-card { justify-content: center; }

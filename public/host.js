@@ -86,12 +86,10 @@ function renderLobby() {
         el('div', { class: 'pin-big' }, S.pin.replace(/(\d{3})(\d{3})/, '$1 $2')),
       ),
       el('div', { class: 'players-area' },
-        el('div', { class: 'players-head' }, '已加入的小動物', el('span', { class: 'count-badge', id: 'pcount' }, '0')),
+        el('div', { class: 'players-head' }, '已加入的小動物', el('span', { class: 'count-badge', id: 'pcount' }, '0'),
+          el('button', { class: 'btn pink', id: 'startBtn', style: 'margin-left:auto', onclick: () => { Sfx.intro(); socket.emit('host:start'); } }, '開始遊戲 ▶')),
         el('div', { class: 'players', id: 'players' }),
       ),
-    ),
-    el('div', { class: 'bottom-bar' },
-      el('button', { class: 'btn pink', id: 'startBtn', onclick: () => { Sfx.intro(); socket.emit('host:start'); } }, '開始遊戲 ▶'),
     ),
   );
   updateLobby();
@@ -101,6 +99,8 @@ function updateLobby() {
   if (!box) return;
   document.getElementById('pcount').textContent = S.players.length;
   document.getElementById('startBtn').disabled = S.players.length === 0;
+  box.classList.toggle('many', S.players.length > 24);
+  box.classList.toggle('lots', S.players.length > 48);
   const ids = new Set(S.players.map((p) => p.id));
   for (const n of [...box.children]) if (n.dataset.id && !ids.has(n.dataset.id)) { n.remove(); seenPlayers.delete(n.dataset.id); }
   box.querySelector('.waiting-hint')?.remove();
