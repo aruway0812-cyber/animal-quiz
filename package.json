@@ -1,0 +1,17 @@
+{
+  "name": "animal-quiz",
+  "version": "1.0.0",
+  "description": "可愛動物風課堂即時問答遊戲",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.4"
+  }
+}

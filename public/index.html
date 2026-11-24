@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffe3ec">
+<title>動物問答</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/play.css">
+</head>
+<body>
+<div class="floaties" id="floaties"></div>
+<header class="me hidden" id="meBar">
+  <span class="me-ani" id="meAni"></span><span class="me-name" id="meName"></span>
+  <span class="me-score" id="meScore">0</span>
+</header>
+<main id="app" class="screen"></main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/common.js"></script>
+<script src="/play.js"></script>
+</body>
+</html>

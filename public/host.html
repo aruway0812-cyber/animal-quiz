@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>動物問答・老師端</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/host.css">
+</head>
+<body>
+<div class="floaties" id="floaties"></div>
+<div class="topbar" id="topbar">
+  <div class="tb-left"><span class="tb-pin" id="tbPin"></span><span class="tb-prog" id="tbProg"></span></div>
+  <div class="tb-right">
+    <button class="tb-btn" id="sndBtn" title="音效">🔊</button>
+    <button class="tb-btn" id="fsBtn" title="全螢幕">⛶</button>
+    <button class="tb-btn" id="restartBtn" title="重新開始">↺</button>
+  </div>
+</div>
+<main id="app" class="screen"></main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/common.js"></script>
+<script src="/host.js"></script>
+</body>
+</html>

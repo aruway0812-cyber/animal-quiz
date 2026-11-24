@@ -1,0 +1,62 @@
+/* ---------- 學生端（手機） ---------- */
+body { font-size: 17px; }
+.screen { padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+.me {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; background: rgba(255, 255, 255, .85); backdrop-filter: blur(6px);
+  font-weight: 900; box-shadow: 0 2px 0 rgba(59, 47, 74, .08);
+}
+.me-ani { font-size: 26px; }
+.me-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.me-score { background: var(--purple); color: #fff; border-radius: 999px; padding: 2px 14px; font-family: "Baloo 2", sans-serif; }
+.me ~ .screen { min-height: calc(100vh - 52px); }
+
+.mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+.logo { font-size: 64px; }
+h1 { margin: 0; font-size: 28px; font-weight: 900; }
+.subtle { color: var(--muted); font-weight: 700; }
+
+/* 加入表單 */
+.join { width: 100%; max-width: 420px; padding: 22px 18px; display: flex; flex-direction: column; gap: 14px; }
+.join label { font-weight: 900; font-size: 15px; text-align: left; }
+.join input {
+  width: 100%; font: inherit; font-size: 22px; font-weight: 800; text-align: center;
+  padding: 12px; border-radius: 16px; border: 3px solid #eadff5; outline: none; color: var(--ink); background: #fff;
+}
+.join input:focus { border-color: var(--purple); }
+.join input.pin { letter-spacing: .2em; font-family: "Baloo 2", sans-serif; font-size: 28px; }
+.animals { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; }
+.animals button { font-size: clamp(18px, 5.5vw, 26px); aspect-ratio: 1; border-radius: 12px; background: #f6f1ff; padding: 0; transition: transform .15s; }
+.animals button.sel { background: var(--pink); transform: scale(1.12); box-shadow: 0 3px 0 #e0607f; }
+.err { color: var(--bad); font-weight: 800; min-height: 1.2em; }
+
+.big-ani { font-size: 110px; line-height: 1; }
+.pill { background: #fff; border-radius: 999px; padding: 6px 20px; font-weight: 900; box-shadow: var(--shadow); }
+
+/* 作答按鈕 */
+.qsmall { padding: 14px 16px; font-weight: 900; line-height: 1.5; font-size: 16px; }
+.qsmall .sec { display: block; font-size: 12px; color: var(--purple); letter-spacing: .1em; }
+.qtimer { text-align: center; font-weight: 800; color: var(--muted); margin: 10px 0; font-family: "Baloo 2", "Noto Sans TC", sans-serif; }
+.qtimer b { color: var(--ink); font-size: 1.3em; }
+.answers { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.answers.tf { grid-template-columns: 1fr; }
+.ans {
+  background: var(--c); color: #fff; border-radius: 22px; padding: 12px 10px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  font-weight: 900; font-size: 15px; line-height: 1.35; min-height: 120px;
+  box-shadow: 0 7px 0 rgba(0, 0, 0, .2); transition: transform .1s, box-shadow .1s;
+}
+.ans:active { transform: translateY(5px); box-shadow: 0 2px 0 rgba(0, 0, 0, .2); }
+.ans .ic { font-size: 42px; background: rgba(255, 255, 255, .9); border-radius: 50%; width: 64px; height: 64px; display: grid; place-items: center; }
+.answers.tf .ans { font-size: 26px; flex-direction: row; gap: 16px; }
+
+/* 結果 */
+body.good { background: linear-gradient(160deg, #d9fbe6, #b8f0cf); }
+body.bad { background: linear-gradient(160deg, #ffe1e1, #ffc9c9); }
+.res-title { font-size: 34px; font-weight: 900; }
+.gain { font-family: "Baloo 2", sans-serif; font-size: 48px; font-weight: 800; color: var(--ok); line-height: 1; }
+.rankbox { padding: 14px 26px; font-weight: 900; font-size: 18px; }
+.rankbox b { font-size: 34px; color: var(--purple); font-family: "Baloo 2", sans-serif; }
+.correct-was { padding: 10px 16px; font-weight: 800; display: flex; gap: 10px; align-items: center; text-align: left; }
+.correct-was .ic { font-size: 28px; flex: none; }
+.medal { font-size: 120px; line-height: 1; }

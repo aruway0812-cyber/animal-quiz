@@ -1,0 +1,74 @@
+:root {
+  --bg: #fff4e6;
+  --bg2: #ffe3ec;
+  --ink: #3b2f4a;
+  --muted: #8a7f96;
+  --card: #ffffff;
+  --pink: #ff8fab;
+  --purple: #9b7bff;
+  --c0: #ff6b6b; /* A 兔子 */
+  --c1: #4d96ff; /* B 熊 */
+  --c2: #ffc23c; /* C 小雞 */
+  --c3: #45c486; /* D 青蛙 */
+  --ok: #3cc47c;
+  --bad: #ff6b6b;
+  --shadow: 0 6px 0 rgba(59, 47, 74, .15);
+  --radius: 24px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: "Baloo 2", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 10%, #fff9f0 0, transparent 40%),
+              linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; cursor: pointer; border: 0; }
+.hidden { display: none !important; }
+
+/* ---------- 背景漂浮動物 ---------- */
+.floaties { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.floaties span {
+  position: absolute; bottom: -80px; font-size: 44px; opacity: .22;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-55vh) rotate(10deg); }
+  100% { transform: translateY(-115vh) rotate(-10deg); }
+}
+
+/* ---------- 共用元件 ---------- */
+.screen { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+.btn {
+  background: var(--purple); color: #fff; font-weight: 800; font-size: 22px;
+  padding: 14px 34px; border-radius: 999px; box-shadow: 0 6px 0 #6b4fd6;
+  transition: transform .1s, box-shadow .1s;
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6b4fd6; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.pink { background: var(--pink); box-shadow: 0 6px 0 #e0607f; }
+.btn.ghost { background: #fff; color: var(--ink); box-shadow: var(--shadow); }
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+.bounce { animation: bounce 1.2s ease-in-out infinite; display: inline-block; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.wiggle { animation: wiggle 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes wiggle { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+.pop { animation: pop .5s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes pop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.slideUp { animation: slideUp .5s cubic-bezier(.2, 1.3, .4, 1) both; }
+@keyframes slideUp { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+.shake { animation: shake .5s; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-10px); } 40%,80% { transform: translateX(10px); } }
+
+/* 答案色塊 */
+.opt0 { --c: var(--c0); } .opt1 { --c: var(--c1); } .opt2 { --c: var(--c2); } .opt3 { --c: var(--c3); }
+.tf0 { --c: var(--c3); } .tf1 { --c: var(--c0); }
+
+/* 彩帶 */
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
+.confetti span { position: absolute; top: -60px; font-size: 32px; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(115vh) rotate(720deg); } }
